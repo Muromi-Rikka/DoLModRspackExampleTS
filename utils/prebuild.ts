@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import * as AdmZip from "adm-zip";
 import { name, version } from "../package.json";
@@ -32,6 +32,14 @@ const fileList = Object.fromEntries(readdirSync(distDir)
 
 function getSrcFileList(filePath: string) {
   const srcFilePath = resolve(srcDir, filePath);
+  if (!existsSync(srcFilePath)) {
+    return Object.fromEntries(
+      [[
+        filePath,
+        [],
+      ]],
+    );
+  }
   const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitignore");
   if (srcScriptList.length) {
     modZip.addLocalFolder(srcFilePath, filePath, (filename) => {
