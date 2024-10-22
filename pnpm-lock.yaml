@@ -39,6 +39,9 @@ importers:
       '@types/node':
         specifier: ^22.7.7
         version: 22.7.7
+      '@types/twine-sugarcube':
+        specifier: ^2.37.1
+        version: 2.37.1
       adm-zip:
         specifier: ^0.5.16
         version: 0.5.16
@@ -479,6 +482,9 @@ packages:
 
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
+
+  '@types/twine-sugarcube@2.37.1':
+    resolution: {integrity: sha512-9XVGvIZIaywR93rG7Hf3PAcVyKMNjJWZomybwZLFFZ/eY/QSIteWSHy3NxvyMS8nNchnsvDO6gGphcAnySAWjQ==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -2984,6 +2990,10 @@ snapshots:
   '@types/sockjs@0.3.36':
     dependencies:
       '@types/node': 22.7.7
+
+  '@types/twine-sugarcube@2.37.1':
+    dependencies:
+      '@types/jquery': 3.5.31
 
   '@types/unist@3.0.3': {}
 

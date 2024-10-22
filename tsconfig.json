@@ -7,7 +7,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types"],
-    "types": ["./src/winDef.d.ts", "node"],
+    "types": ["./src/winDef.d.ts", "node", "twine-sugarcube"],
     "allowImportingTsExtensions": true,
     "strict": true,
     "noEmit": true,
