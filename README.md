@@ -10,6 +10,19 @@
 pnpm install
 ```
 
+### 开发执行
+
+1. 在根目录创建`game`文件夹
+2. 放置游戏到`game`文件夹下
+   - 如有需要加载的`mod`,在`game`文件夹下创建`mods`子文件夹
+3. 改名游戏本体文件名为`index.html`
+4. 在工作区中执行
+   ```shell
+   pnpm build
+   ```
+5. 在浏览器中打开`http://localhost:5678`进入开发服务
+6. 编写完代码,直接刷新浏览器即可查看到结果
+
 ### 构建mod.zip
 
 构建名称为`package.json`中的`name`字段
@@ -78,3 +91,23 @@ pnpm build
 ### dependenceInfo
 
 在`src/dependenceInfo`目录下将内容添加到`index.ts`文件的数组中,按照`DependenceInfo`声明格式进行编写
+
+## 额外配置
+
+### 加密
+
+在工作区`config`目录下,修改`crypto.ts`配置文件配置`mod`加密
+
+```typescript
+export const cryptoConfig = {
+  // 是否开启加密
+  enabled: true,
+  // Mod加密密码
+  password: "123456789",
+  // 密码提示文本
+  passwordHint: "密码提示信息：猜猜密码是什么？",
+  // 密码存放位置
+  passwordHintFile: "passwordHint.txt",
+};
+```
+根据注释进行配置即可
