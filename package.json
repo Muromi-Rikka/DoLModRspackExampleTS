@@ -17,6 +17,7 @@
     "@antfu/eslint-config": "^3.8.0",
     "@rspack/cli": "^1.0.13",
     "@rspack/core": "^1.0.13",
+    "@rspack/dev-server": "^1.0.9",
     "@types/adm-zip": "^0.5.5",
     "@types/jquery": "^3.5.31",
     "@types/lodash-es": "^4.17.12",
