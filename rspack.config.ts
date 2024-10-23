@@ -88,8 +88,7 @@ function devServer() {
     return {
       devServer: {
         port: 5678,
-        liveReload: true,
-        watchFiles: ["src/**/*.ts", "src/**/*.twee"],
+        liveReload: false,
         hot: false,
         static: "game",
         setupMiddlewares: (middlewares, devServer) => {
