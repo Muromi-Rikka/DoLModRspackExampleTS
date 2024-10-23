@@ -1,6 +1,6 @@
 export const cryptoConfig = {
   // 是否开启加密
-  enabled: true,
+  enabled: false,
   // Mod加密密码
   password: "123456789",
   // 密码提示文本
