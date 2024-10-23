@@ -110,12 +110,14 @@ function devServer() {
               ]));
             }
           });
+          const filename = `${name}-${version}.mod.zip`;
 
-          devServer.app?.get(`/${name}-${version}.mod.zip`, (_, response) => {
-            rspack(commonConfig(), (err, stats) => {
-              console.log({ err, stats });
+          devServer.app?.get(`/${filename}`, (_, response) => {
+            rspack(commonConfig(), (_err, _stats) => {
               // eslint-disable-next-line node/prefer-global/process
-              response.send(createZip(process.cwd()).toBuffer());
+              createZip(process.cwd(), filename).then((zip) => {
+                response.send(zip.toBuffer());
+              });
             });
           });
           return middlewares;
@@ -128,5 +130,4 @@ function devServer() {
 export default defineConfig({
   ...commonConfig(),
   ...devServer(),
-
 });

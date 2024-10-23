@@ -2,9 +2,11 @@ import { Buffer } from "node:buffer";
 import { existsSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import * as AdmZip from "adm-zip";
+import { cryptoConfig } from "../config/crypto.ts";
 import { name, version } from "../package.json";
 import { addonPlugin } from "../src/addonPlugin";
 import { dependenceInfo } from "../src/dependenceInfo";
+import { encryptModZipFile } from "./encrypt.util.ts";
 
 function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
   const srcFilePath = resolve(srcDir, filePath);
@@ -30,7 +32,7 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
     ]],
   );
 }
-export function createZip(_cwd: string) {
+export async function createZip(_cwd: string, filename: string) {
   const scriptFileDir = new Set([
     "scriptFileList_earlyload",
     "scriptFileList_inject_early",
@@ -66,5 +68,51 @@ export function createZip(_cwd: string) {
     dependenceInfo,
   };
   modZip.addFile("boot.json", Buffer.from(JSON.stringify(result, null, 2), "utf-8"));
+  if (cryptoConfig.enabled) {
+    const cryptoZip = new AdmZip();
+    cryptoZip.addLocalFile(resolve(__dirname, "static/earlyload.js"));
+    cryptoZip.addLocalFile(resolve(__dirname, "static/SimpleCryptWrapper.js"));
+    cryptoZip.addFile(cryptoConfig.passwordHintFile, Buffer.from(cryptoConfig.passwordHint));
+    const encryptModData = await encryptModZipFile(modZip.toBuffer(), cryptoConfig.password, filename);
+    const cryptoBootFile = {
+      name,
+      version,
+      ...getSrcFileList("additionFile", srcDir, cryptoZip),
+      additionFile: [],
+      styleFileList: [],
+      tweeFileList: [],
+      imgFileList: [],
+      replacePatchList: [],
+      scriptFileList_preload: [],
+      scriptFileList: [],
+      additionBinaryFile: [
+        encryptModData.crypt.name,
+        encryptModData.salt.name,
+        encryptModData.nonce.name,
+      ],
+      scriptFileList_earlyload: [
+        "earlyload.js",
+      ],
+      scriptFileList_inject_early: [
+        "SimpleCryptWrapper.js",
+      ],
+      dependenceInfo: [
+        {
+          modName: "ModLoader",
+          version: "^2.5.1",
+        },
+        {
+          modName: "SweetAlert2Mod",
+          version: "^1.0.0",
+        },
+      ],
+    };
+    (cryptoBootFile as any).additionFile.push(cryptoConfig.passwordHintFile);
+    cryptoZip.addFile(encryptModData.crypt.name, Buffer.from(encryptModData.crypt.data));
+    cryptoZip.addFile(encryptModData.salt.name, Buffer.from(encryptModData.salt.data));
+    cryptoZip.addFile(encryptModData.nonce.name, Buffer.from(encryptModData.nonce.data));
+    cryptoZip.addFile("boot.json", Buffer.from(JSON.stringify(cryptoBootFile, null, 2), "utf-8"));
+    return cryptoZip;
+  }
   return modZip;
 }
