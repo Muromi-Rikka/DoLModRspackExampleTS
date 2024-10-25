@@ -26,6 +26,23 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
       return !filename.endsWith(".gitkeep");
     });
   }
+
+  if (filePath === "imgFileList") {
+    return Object.fromEntries([
+      [
+        filePath,
+        walkSync(
+          srcFilePath,
+          {
+            basePath: "imgFileList",
+            pathSegmentSeparator: "/",
+          },
+        )
+          .filter(item => item.name !== ".gitkeep" && item.dirent.isFile())
+          .map(item => item.path),
+      ],
+    ]);
+  }
   return Object.fromEntries(
     [[
       filePath,
@@ -59,7 +76,9 @@ function loadOriginImage(srcDir: string, modZip: AdmZip) {
         basePath: "",
         pathSegmentSeparator: "/",
       },
-    ).filter(item => item.name !== ".gitkeep" && item.dirent.isFile()).map(item => item.path);
+    )
+      .filter(item => item.name !== ".gitkeep" && item.dirent.isFile())
+      .map(item => item.path);
   }
   return [];
 }
