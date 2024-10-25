@@ -27,29 +27,20 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
     });
   }
 
-  if (filePath === "imgFileList") {
-    return Object.fromEntries([
-      [
-        filePath,
-        walkSync(
-          srcFilePath,
-          {
-            basePath: "imgFileList",
-            pathSegmentSeparator: "/",
-          },
-        )
-          .filter(item => item.name !== ".gitkeep" && item.dirent.isFile())
-          .map(item => item.path),
-      ],
-    ]);
-  }
-  return Object.fromEntries(
-    [[
+  return Object.fromEntries([
+    [
       filePath,
-      srcScriptList
-        .map(item => [filePath, item].join("/")),
-    ]],
-  );
+      walkSync(
+        srcFilePath,
+        {
+          basePath: filePath,
+          pathSegmentSeparator: "/",
+        },
+      )
+        .filter(item => item.name !== ".gitkeep" && item.dirent.isFile())
+        .map(item => item.path),
+    ],
+  ]);
 }
 
 function loadOriginImage(srcDir: string, modZip: AdmZip) {
