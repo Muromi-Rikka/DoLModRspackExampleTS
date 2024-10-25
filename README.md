@@ -18,7 +18,7 @@ pnpm install
 3. 改名游戏本体文件名为`index.html`
 4. 在工作区中执行
    ```shell
-   pnpm build
+   pnpm dev
    ```
 5. 在浏览器中打开`http://localhost:5678`进入开发服务
 6. 编写完代码,直接刷新浏览器即可查看到结果
@@ -91,6 +91,10 @@ pnpm build
 ### dependenceInfo
 
 在`src/dependenceInfo`目录下将内容添加到`index.ts`文件的数组中,按照`DependenceInfo`声明格式进行编写
+
+## 材质替换
+
+在工作区目录下`originImage`文件夹中放置图片及文件夹,即可实现材质替换功能
 
 ## 额外配置
 
