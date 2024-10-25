@@ -1,6 +1,8 @@
+import type { IBoot } from "../src/types/boot.types.ts";
 import { Buffer } from "node:buffer";
-import { existsSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, readdirSync, statSync } from "node:fs";
+import { relative, resolve } from "node:path";
+import { walkSync } from "@nodelib/fs.walk";
 import * as AdmZip from "adm-zip";
 import { cryptoConfig } from "../config/crypto.ts";
 import { name, version } from "../package.json";
@@ -18,10 +20,10 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
       ]],
     );
   }
-  const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitignore");
+  const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitkeep");
   if (srcScriptList.length) {
     modZip.addLocalFolder(srcFilePath, filePath, (filename) => {
-      return !filename.endsWith(".gitignore");
+      return !filename.endsWith(".gitkeep");
     });
   }
   return Object.fromEntries(
@@ -32,6 +34,33 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
     ]],
   );
 }
+
+function loadOriginImage(srcDir: string, modZip: AdmZip) {
+  const originImagePath = resolve(srcDir, "originImage");
+  const originList = readdirSync(originImagePath)
+    .filter(item => item !== ".gitkeep")
+    .map(item => resolve(originImagePath, item));
+  if (originList.length) {
+    originList.forEach((item) => {
+      const itemStat = statSync(item);
+      if (itemStat.isDirectory()) {
+        modZip.addLocalFolder(item, relative(originImagePath, item));
+      }
+      else if (itemStat.isFile()) {
+        modZip.addLocalFile(item);
+      }
+    });
+    return walkSync(
+      originImagePath,
+      {
+        basePath: "",
+        pathSegmentSeparator: "/",
+      },
+    ).filter(item => item.name !== ".gitkeep" && item.dirent.isFile()).map(item => item.path);
+  }
+  return [];
+}
+
 export async function createZip(_cwd: string, filename: string) {
   const scriptFileDir = new Set([
     "scriptFileList_earlyload",
@@ -54,7 +83,7 @@ export async function createZip(_cwd: string, filename: string) {
         scriptList,
       ];
     }));
-  const result = {
+  const result: IBoot = {
     name,
     version,
     ...fileList,
@@ -66,7 +95,8 @@ export async function createZip(_cwd: string, filename: string) {
     ...getSrcFileList("additionBinaryFile", srcDir, modZip),
     addonPlugin,
     dependenceInfo,
-  };
+  } as IBoot;
+  result.imgFileList.push(...loadOriginImage(srcDir, modZip));
   modZip.addFile("boot.json", Buffer.from(JSON.stringify(result, null, 2), "utf-8"));
   if (cryptoConfig.enabled) {
     const cryptoZip = new AdmZip();
