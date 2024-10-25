@@ -18,10 +18,10 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
       ]],
     );
   }
-  const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitignore");
+  const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitkeep");
   if (srcScriptList.length) {
     modZip.addLocalFolder(srcFilePath, filePath, (filename) => {
-      return !filename.endsWith(".gitignore");
+      return !filename.endsWith(".gitkeep");
     });
   }
   return Object.fromEntries(
