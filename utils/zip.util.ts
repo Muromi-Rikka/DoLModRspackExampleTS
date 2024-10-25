@@ -37,6 +37,9 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
 
 function loadOriginImage(srcDir: string, modZip: AdmZip) {
   const originImagePath = resolve(srcDir, "originImage");
+  if (!existsSync(originImagePath)) {
+    return [];
+  }
   const originList = readdirSync(originImagePath)
     .filter(item => item !== ".gitkeep")
     .map(item => resolve(originImagePath, item));
