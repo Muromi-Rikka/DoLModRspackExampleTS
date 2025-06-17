@@ -95,7 +95,7 @@ function devServer() {
           if (!devServer) {
             throw new Error("@rspack/dev-server is not defined");
           }
-          devServer.app?.get("/modList.json", (_, response) => {
+          devServer.app?.get("/modList.json", (_: never, response: any) => {
             console.log("get mod list");
             if (existsSync("./game/mods")) {
               const modList = readdirSync("./game/mods/").filter(item => item.endsWith(".zip")).map(item => `/mods/${item}`);
@@ -112,7 +112,7 @@ function devServer() {
           });
           const filename = `${name}-${version}.mod.zip`;
 
-          devServer.app?.get(`/${filename}`, (_, response) => {
+          devServer.app?.get(`/${filename}`, (_: never, response: any) => {
             rspack(commonConfig(), (_err, _stats) => {
               // eslint-disable-next-line node/prefer-global/process
               createZip(process.cwd(), filename).then((zip) => {

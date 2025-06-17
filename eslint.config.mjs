@@ -5,6 +5,8 @@ export default antfu({
     semi: true,
     quotes: "double",
   },
+  jsonc: true,
+  ignores: ["./utils/static/*.js"],
 }, {
   files: ["**/*.ts"],
   rules: {
