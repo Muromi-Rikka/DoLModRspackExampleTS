@@ -23,7 +23,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^4.0.0
-        version: 4.18.0(@vue/compiler-sfc@3.5.12)(eslint@9.31.0)(typescript@5.8.3)
+        version: 4.19.0(@vue/compiler-sfc@3.5.12)(eslint@9.31.0)(typescript@5.8.3)
       '@nodelib/fs.walk':
         specifier: ^3.0.1
         version: 3.0.1
@@ -72,11 +72,12 @@ importers:
 
 packages:
 
-  '@antfu/eslint-config@4.18.0':
-    resolution: {integrity: sha512-NjzC2VS0UU45xMPN7FJcIF/hhfYHb/ILVp8T6JdfPKel5QToC4bjC8P0v1tp+cy0/F+5jRJdaGrnH31s7Ku4jw==}
+  '@antfu/eslint-config@4.19.0':
+    resolution: {integrity: sha512-IQlML0cc7qNA1Uk55raMRZjOmh26rkX3bi2MFYjhO+VOtTQt8Mz2ngxBlIwpTgZFgfuYjle6JPuOuALnEZHDFw==}
     hasBin: true
     peerDependencies:
       '@eslint-react/eslint-plugin': ^1.38.4
+      '@next/eslint-plugin-next': ^15.4.0-canary.115
       '@prettier/plugin-xml': ^3.4.1
       '@unocss/eslint-plugin': '>=0.50.0'
       astro-eslint-parser: ^1.0.2
@@ -93,6 +94,8 @@ packages:
       svelte-eslint-parser: '>=0.37.0'
     peerDependenciesMeta:
       '@eslint-react/eslint-plugin':
+        optional: true
+      '@next/eslint-plugin-next':
         optional: true
       '@prettier/plugin-xml':
         optional: true
@@ -137,8 +140,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/types@7.28.1':
-    resolution: {integrity: sha512-x0LvFTekgSX+83TI28Y9wYPUfzrnl2aT5+5QLnO6v7mSJYtEEevuDRN0F0uSHRk1G1IWZC43o00Y0xDDrpBGPQ==}
+  '@babel/types@7.28.2':
+    resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
     engines: {node: '>=6.9.0'}
 
   '@clack/core@0.5.0':
@@ -2446,7 +2449,7 @@ packages:
 
 snapshots:
 
-  '@antfu/eslint-config@4.18.0(@vue/compiler-sfc@3.5.12)(eslint@9.31.0)(typescript@5.8.3)':
+  '@antfu/eslint-config@4.19.0(@vue/compiler-sfc@3.5.12)(eslint@9.31.0)(typescript@5.8.3)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -2503,9 +2506,9 @@ snapshots:
 
   '@babel/parser@7.28.0':
     dependencies:
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
 
-  '@babel/types@7.28.1':
+  '@babel/types@7.28.2':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
