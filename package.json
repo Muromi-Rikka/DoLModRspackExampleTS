@@ -27,7 +27,7 @@
     "@types/node": "^22.10.1",
     "@types/twine-sugarcube": "^2.37.1",
     "adm-zip": "^0.5.16",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "eslint": "^9.16.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
