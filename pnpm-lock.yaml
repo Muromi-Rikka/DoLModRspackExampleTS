@@ -10,7 +10,7 @@ importers:
     dependencies:
       dayjs:
         specifier: ^1.11.13
-        version: 1.11.14
+        version: 1.11.15
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -897,8 +897,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  dayjs@1.11.14:
-    resolution: {integrity: sha512-E8fIdSxUlyqSA8XYGnNa3IkIzxtEmFjI+JU/6ic0P1zmSqyL6HyG5jHnpPjRguDNiaHLpfvHKWFiohNsJLqcJQ==}
+  dayjs@1.11.15:
+    resolution: {integrity: sha512-MC+DfnSWiM9APs7fpiurHGCoeIx0Gdl6QZBy+5lu8MbYKN5FZEXqOgrundfibdfhGZ15o9hzmZ2xJjZnbvgKXQ==}
 
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -3358,7 +3358,7 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  dayjs@1.11.14: {}
+  dayjs@1.11.15: {}
 
   debounce@1.2.1: {}
 
