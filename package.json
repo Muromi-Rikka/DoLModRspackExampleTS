@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "jquery": "^3.7.1",
+    "jquery": "^4.0.0",
     "libsodium-wrappers-sumo": "^0.8.0",
     "lodash-es": "^4.17.21"
   },
