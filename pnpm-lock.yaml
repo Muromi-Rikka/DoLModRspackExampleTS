@@ -43,8 +43,8 @@ importers:
         specifier: ^3.5.32
         version: 3.5.33
       '@types/libsodium-wrappers-sumo':
-        specifier: ^0.7.8
-        version: 0.7.8
+        specifier: ^0.8.0
+        version: 0.8.2
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -602,11 +602,9 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/libsodium-wrappers-sumo@0.7.8':
-    resolution: {integrity: sha512-N2+df4MB/A+W0RAcTw7A5oxKgzD+Vh6Ye7lfjWIi5SdTzVLfHPzxUjhwPqHLO5Ev9fv/+VHl+sUaUuTg4fUPqw==}
-
-  '@types/libsodium-wrappers@0.7.14':
-    resolution: {integrity: sha512-5Kv68fXuXK0iDuUir1WPGw2R9fOZUlYlSAa0ztMcL0s0BfIDTqg9GXz8K30VJpPP3sxWhbolnQma2x+/TfkzDQ==}
+  '@types/libsodium-wrappers-sumo@0.8.2':
+    resolution: {integrity: sha512-uFOBpg/r21hExVlh2ty8YpDfSR+Yy3Jn8XS4+SSjitbhTxdYq+pBz/49XRxyUFe8SzqujHf/Wu0/O4d+FUtNfQ==}
+    deprecated: This is a stub types definition. libsodium-wrappers-sumo provides its own type definitions, so you do not need this installed.
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
@@ -3153,11 +3151,9 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/libsodium-wrappers-sumo@0.7.8':
+  '@types/libsodium-wrappers-sumo@0.8.2':
     dependencies:
-      '@types/libsodium-wrappers': 0.7.14
-
-  '@types/libsodium-wrappers@0.7.14': {}
+      libsodium-wrappers-sumo: 0.8.1
 
   '@types/lodash-es@4.17.12':
     dependencies:
