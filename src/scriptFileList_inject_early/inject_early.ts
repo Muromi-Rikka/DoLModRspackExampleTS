@@ -23,8 +23,6 @@ export interface JqEventListenerObject {
 }
 
 export type JqEventListenersDataType = Record<string, JqEventListenerObject[]>;
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-expect-error
 export function getEventListenersFromJqNode(node: ReturnType<typeof $>): JqEventListenersDataType {
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-expect-error
@@ -93,8 +91,7 @@ export function ModWebpackExampleTs_patchLinkButton(
           console.error("patchLinkButton() hookData invalid", [thisPtr, thisPtr.name, thisPtr.args, hookData]);
           return r;
         }
-        // eslint-disable-next-line ts/ban-ts-comment
-        // @ts-expect-error
+
         const outputRef = $(this.output);
 
         const children = outputRef.children();
@@ -148,5 +145,6 @@ export function ModWebpackExampleTs_patchLinkButton(
   console.log("patchLinkButton() success");
   logger.log("patchLinkButton() success");
 }
-
+// eslint-disable-next-line ts/ban-ts-comment
+// @ts-expect-error
 window.ModWebpackExampleTs_patchLinkButton = ModWebpackExampleTs_patchLinkButton;

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development rspack serve",
     "build": "cross-env NODE_ENV=production rspack build",
-    "postbuild": "ts-node ./utils/prebuild.ts"
+    "postbuild": "tsx ./utils/prebuild.ts"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
@@ -20,16 +20,16 @@
     "@rspack/cli": "^1.1.5",
     "@rspack/core": "^1.1.5",
     "@rspack/dev-server": "^1.0.9",
+    "@scml/types": "^1.0.7",
     "@types/adm-zip": "^0.5.7",
     "@types/jquery": "^3.5.32",
-    "@types/libsodium-wrappers-sumo": "^0.8.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^24.0.0",
     "@types/twine-sugarcube": "^2.37.1",
     "adm-zip": "^0.5.16",
     "cross-env": "^10.0.0",
     "eslint": "^10.0.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.2"
   }
 }

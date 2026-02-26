@@ -6,18 +6,12 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types"],
-    "types": ["./src/winDef.d.ts", "node", "twine-sugarcube"],
+    "types": ["@scml/types", "node", "twine-sugarcube"],
     "allowImportingTsExtensions": true,
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": ["src", "rspack.config.ts", "utils"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "include": ["src", "rspack.config.ts", "utils"]
 }

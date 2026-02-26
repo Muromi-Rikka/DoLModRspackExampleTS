@@ -3,7 +3,7 @@ import { Buffer } from "node:buffer";
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { relative, resolve } from "node:path";
 import { walkSync } from "@nodelib/fs.walk";
-import * as AdmZip from "adm-zip";
+import AdmZip from "adm-zip";
 import { cryptoConfig } from "../config/crypto.ts";
 import { name, version } from "../package.json";
 import { addonPlugin } from "../src/addonPlugin";
