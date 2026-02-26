@@ -22,7 +22,7 @@
     "@rspack/dev-server": "^1.0.9",
     "@scml/types": "^1.0.7",
     "@types/adm-zip": "^0.5.7",
-    "@types/jquery": "^3.5.32",
+    "@types/jquery": "^4.0.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^24.0.0",
     "@types/twine-sugarcube": "^2.37.1",
