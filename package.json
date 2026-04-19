@@ -19,7 +19,7 @@
     "@nodelib/fs.walk": "^3.0.1",
     "@rspack/cli": "^1.1.5",
     "@rspack/core": "^1.1.5",
-    "@rspack/dev-server": "^1.0.9",
+    "@rspack/dev-server": "^2.0.0",
     "@scml/types": "^1.0.7",
     "@types/adm-zip": "^0.5.7",
     "@types/jquery": "^4.0.0",
