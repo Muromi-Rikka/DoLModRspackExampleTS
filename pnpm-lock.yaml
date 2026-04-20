@@ -16,7 +16,7 @@ importers:
         version: 4.0.0
       libsodium-wrappers-sumo:
         specifier: ^0.8.0
-        version: 0.8.3
+        version: 0.8.4
       lodash-es:
         specifier: ^4.17.21
         version: 4.18.1
@@ -1838,11 +1838,11 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libsodium-sumo@0.8.3:
-    resolution: {integrity: sha512-z5CLkGJqilCXpfYxrXWh8fHVv2C8lpnIVxsZAHkxbEFyS+zZtL8VyM8FjtAmuDYP/rHgw8ftdwxSV8Efhzb8GQ==}
+  libsodium-sumo@0.8.4:
+    resolution: {integrity: sha512-TMtHShQfVVsaxDygyapvUC3o7YsPgXa/hRWeIgzyFz6w5k/1hirGptCxp1U7XwW3rCskaTTYKgV10v86UiGgNw==}
 
-  libsodium-wrappers-sumo@0.8.3:
-    resolution: {integrity: sha512-EfLSlxKJ7RUGVospOlvbvse0suAAVPR+CkZfFcFjPzPtTEgVfvIaZUPsWndVjxYp/om2HDc0iLeR5wLF8YbHZg==}
+  libsodium-wrappers-sumo@0.8.4:
+    resolution: {integrity: sha512-ql7hcgulKZ3ekfa2DGAogcCKsWU0diA/0nArz1CFzh93WQdb46/Kj18ka/Hifq6uA3Ush34Pc6vU/6HXeRwUkg==}
 
   local-pkg@1.1.2:
     resolution: {integrity: sha512-arhlxbFRmoQHl33a0Zkle/YWlmNwoyt6QNZEIJcqNbdrsix5Lvc4HyyI3EnwxTYlZYc32EbYrQ8SzEZ7dqgg9A==}
@@ -4542,11 +4542,11 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libsodium-sumo@0.8.3: {}
+  libsodium-sumo@0.8.4: {}
 
-  libsodium-wrappers-sumo@0.8.3:
+  libsodium-wrappers-sumo@0.8.4:
     dependencies:
-      libsodium-sumo: 0.8.3
+      libsodium-sumo: 0.8.4
 
   local-pkg@1.1.2:
     dependencies:
