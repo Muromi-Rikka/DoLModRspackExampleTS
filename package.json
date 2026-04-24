@@ -17,8 +17,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^8.0.0",
     "@nodelib/fs.walk": "^3.0.1",
-    "@rspack/cli": "^1.1.5",
-    "@rspack/core": "^1.1.5",
+    "@rspack/cli": "^2.0.0",
+    "@rspack/core": "^2.0.0",
     "@rspack/dev-server": "^2.0.0",
     "@scml/types": "^1.0.7",
     "@types/adm-zip": "^0.5.7",
