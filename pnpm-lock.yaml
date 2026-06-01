@@ -29,13 +29,13 @@ importers:
         version: 3.0.1
       '@rspack/cli':
         specifier: ^2.0.0
-        version: 2.0.5(@rspack/core@2.0.4)(@rspack/dev-server@2.0.1(@rspack/core@2.0.4))
+        version: 2.0.5(@rspack/core@2.0.4)(@rspack/dev-server@2.0.3(@rspack/core@2.0.4))
       '@rspack/core':
         specifier: ^2.0.0
         version: 2.0.4
       '@rspack/dev-server':
         specifier: ^2.0.0
-        version: 2.0.1(@rspack/core@2.0.4)
+        version: 2.0.3(@rspack/core@2.0.4)
       '@scml/types':
         specifier: ^1.0.7
         version: 1.0.7
@@ -540,8 +540,8 @@ packages:
       '@swc/helpers':
         optional: true
 
-  '@rspack/dev-middleware@2.0.1':
-    resolution: {integrity: sha512-cXSubf5/C+dvkWV2/+rGTtiZ93wSLd3OlTQhwMvsmsmGDdPlkYqIvQ+BTkOk9UCXxKIaF0DDYYmCpBeRRYJfJw==}
+  '@rspack/dev-middleware@2.0.2':
+    resolution: {integrity: sha512-vYdJq4AEEOxeTvlr8tEqgcVrNm0JOiOalmB6fc63Obu3RKYD4JAWj9oR+n7/nAd1x4GXjyGWivfel+/jZ+olvQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rspack/core': ^2.0.0-0
@@ -549,8 +549,8 @@ packages:
       '@rspack/core':
         optional: true
 
-  '@rspack/dev-server@2.0.1':
-    resolution: {integrity: sha512-N5sIdU9v6WhwPH6Ek8QCj4IMvGd8jA3ZW1NMAyHP1ezzKIr2/idcNV2zX5vbC6FJvOLRLww0rFjfKA+z4tshDA==}
+  '@rspack/dev-server@2.0.3':
+    resolution: {integrity: sha512-S29nOxXQS9o+0uGNe7SgND2dAKnte5ZTD5tiT3/B4lKbviqpXD4tbH7NZWA3hGwlSkmOIbFlysYPL1bVHuBcSg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rspack/core': ^2.0.0-0
@@ -2157,24 +2157,24 @@ snapshots:
       '@rspack/binding-win32-ia32-msvc': 2.0.4
       '@rspack/binding-win32-x64-msvc': 2.0.4
 
-  '@rspack/cli@2.0.5(@rspack/core@2.0.4)(@rspack/dev-server@2.0.1(@rspack/core@2.0.4))':
+  '@rspack/cli@2.0.5(@rspack/core@2.0.4)(@rspack/dev-server@2.0.3(@rspack/core@2.0.4))':
     dependencies:
       '@rspack/core': 2.0.4
     optionalDependencies:
-      '@rspack/dev-server': 2.0.1(@rspack/core@2.0.4)
+      '@rspack/dev-server': 2.0.3(@rspack/core@2.0.4)
 
   '@rspack/core@2.0.4':
     dependencies:
       '@rspack/binding': 2.0.4
 
-  '@rspack/dev-middleware@2.0.1(@rspack/core@2.0.4)':
+  '@rspack/dev-middleware@2.0.2(@rspack/core@2.0.4)':
     optionalDependencies:
       '@rspack/core': 2.0.4
 
-  '@rspack/dev-server@2.0.1(@rspack/core@2.0.4)':
+  '@rspack/dev-server@2.0.3(@rspack/core@2.0.4)':
     dependencies:
       '@rspack/core': 2.0.4
-      '@rspack/dev-middleware': 2.0.1(@rspack/core@2.0.4)
+      '@rspack/dev-middleware': 2.0.2(@rspack/core@2.0.4)
 
   '@scml/types@1.0.7': {}
 
