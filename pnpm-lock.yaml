@@ -50,7 +50,7 @@ importers:
         version: 4.17.12
       '@types/node':
         specifier: ^24.0.0
-        version: 24.13.0
+        version: 24.13.1
       '@types/twine-sugarcube':
         specifier: ^2.37.1
         version: 2.37.2
@@ -614,11 +614,11 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@24.12.4':
-    resolution: {integrity: sha512-GUUEShf+PBCGW2KaXwcIt3Yk+e3pkKwWKb9GSyM9WQVE+ep2jzmHdGsHzu4wgcZy5fN9FBdVzjpBQsYlpfpgLA==}
-
   '@types/node@24.13.0':
     resolution: {integrity: sha512-5vtOqGQr4NJKeEzV441FcOi2MeG9UTWq9LqVLGneDdu4vlX17H8kQ2PA2UmNwCUGPVDj4oBjNhS7ReVEIWJJrg==}
+
+  '@types/node@24.13.1':
+    resolution: {integrity: sha512-RSpUJGmvsJ1ZeBehQZFhIdpsz+bIpES0nIQXko4Ybq+N+kX6XvOq3Jo+iJ82FWLdblFq85AsMikd3m35jgezYg==}
 
   '@types/twine-sugarcube@2.37.2':
     resolution: {integrity: sha512-ta3swJxlp3YUxo9hElYhar+MC5mG+TirKhmBr8+67nU5DfgqJK7SrIF05W54yaIRei9KNZDwAvgg/mu8PyTa4Q==}
@@ -1740,9 +1740,6 @@ packages:
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
 
-  undici-types@7.16.0:
-    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
-
   undici-types@7.18.2:
     resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
@@ -2210,7 +2207,7 @@ snapshots:
 
   '@types/adm-zip@0.5.8':
     dependencies:
-      '@types/node': 24.12.4
+      '@types/node': 24.13.0
 
   '@types/debug@4.1.13':
     dependencies:
@@ -2244,11 +2241,11 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@24.12.4':
-    dependencies:
-      undici-types: 7.16.0
-
   '@types/node@24.13.0':
+    dependencies:
+      undici-types: 7.18.2
+
+  '@types/node@24.13.1':
     dependencies:
       undici-types: 7.18.2
 
@@ -3636,8 +3633,6 @@ snapshots:
   typescript@6.0.3: {}
 
   ufo@1.6.3: {}
-
-  undici-types@7.16.0: {}
 
   undici-types@7.18.2: {}
 
