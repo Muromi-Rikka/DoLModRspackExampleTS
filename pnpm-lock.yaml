@@ -29,13 +29,13 @@ importers:
         version: 1.1.0(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/typescript-estree@8.70.0(typescript@6.0.3))(@typescript-eslint/utils@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3)
       '@rspack/cli':
         specifier: ^2.0.0
-        version: 2.2.3(@rspack/core@2.2.3)(@rspack/dev-server@2.2.0(@rspack/core@2.2.3))
+        version: 2.2.3(@rspack/core@2.2.3)(@rspack/dev-server@2.2.1(@rspack/core@2.2.3))
       '@rspack/core':
         specifier: ^2.0.0
         version: 2.2.3
       '@rspack/dev-server':
         specifier: ^2.0.0
-        version: 2.2.0(@rspack/core@2.2.3)
+        version: 2.2.1(@rspack/core@2.2.3)
       '@scml/types':
         specifier: ^1.0.7
         version: 1.0.7
@@ -638,8 +638,8 @@ packages:
       '@rspack/core':
         optional: true
 
-  '@rspack/dev-server@2.2.0':
-    resolution: {integrity: sha512-Bd0DNphOJ5/KAm3bFpUUZeP7O6jvVDNdXJEmlpsVZLfdSgjmrd6Ut/EHCBv95tmiwOQN0M41SdvlUU4f855HFA==}
+  '@rspack/dev-server@2.2.1':
+    resolution: {integrity: sha512-Il8HbYGK3rH5rM0XmUOsOGZVw69BKRpBZ61P28Fy8ry35CtfniDBWtbo/rvJtIT/sK0qwijmNrhF498ltsV+uA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rspack/core': ^2.0.0
@@ -2218,11 +2218,11 @@ snapshots:
       '@rspack/binding-win32-ia32-msvc': 2.2.3
       '@rspack/binding-win32-x64-msvc': 2.2.3
 
-  '@rspack/cli@2.2.3(@rspack/core@2.2.3)(@rspack/dev-server@2.2.0(@rspack/core@2.2.3))':
+  '@rspack/cli@2.2.3(@rspack/core@2.2.3)(@rspack/dev-server@2.2.1(@rspack/core@2.2.3))':
     dependencies:
       '@rspack/core': 2.2.3
     optionalDependencies:
-      '@rspack/dev-server': 2.2.0(@rspack/core@2.2.3)
+      '@rspack/dev-server': 2.2.1(@rspack/core@2.2.3)
 
   '@rspack/core@2.2.3':
     dependencies:
@@ -2232,7 +2232,7 @@ snapshots:
     optionalDependencies:
       '@rspack/core': 2.2.3
 
-  '@rspack/dev-server@2.2.0(@rspack/core@2.2.3)':
+  '@rspack/dev-server@2.2.1(@rspack/core@2.2.3)':
     dependencies:
       '@rspack/core': 2.2.3
       '@rspack/dev-middleware': 2.0.3(@rspack/core@2.2.3)
