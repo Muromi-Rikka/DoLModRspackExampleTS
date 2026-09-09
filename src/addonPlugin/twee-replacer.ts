@@ -1,8 +1,8 @@
-import type { ModBootJsonAddonPlugin } from "../types/boot.types.ts";
+import type { ModBootJsonAddonPlugin as ModuleBootJsonAddonPlugin } from "../types/boot.types.ts";
 
-export const TweeReplacer: ModBootJsonAddonPlugin = {
-  modName: "TweeReplacer",
+export const TweeReplacer: ModuleBootJsonAddonPlugin = {
   addonName: "TweeReplacerAddon",
+  modName: "TweeReplacer",
   modVersion: "1.0.0",
   params: [
 

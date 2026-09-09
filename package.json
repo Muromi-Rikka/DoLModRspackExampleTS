@@ -15,8 +15,8 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.0.0",
     "@nodelib/fs.walk": "^3.0.1",
+    "@renton/eslint-config": "^1.1.0",
     "@rspack/cli": "^2.0.0",
     "@rspack/core": "^2.0.0",
     "@rspack/dev-server": "^2.0.0",
@@ -30,6 +30,6 @@
     "cross-env": "^10.0.0",
     "eslint": "^10.0.0",
     "tsx": "^4.21.0",
-    "typescript": "^7.0.0"
+    "typescript": "6.0.3"
   }
 }
