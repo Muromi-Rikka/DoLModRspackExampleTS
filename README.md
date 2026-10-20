@@ -32,6 +32,7 @@ pnpm install
 ```shell
 pnpm build
 ```
+
 进行构建,构建完的成果物在`dist`目录下存放
 
 ## boot.json
@@ -114,4 +115,5 @@ export const cryptoConfig = {
   passwordHintFile: "passwordHint.txt",
 };
 ```
+
 根据注释进行配置即可

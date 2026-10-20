@@ -1,36 +1,29 @@
 import type { Buffer } from "node:buffer";
-import * as console from "node:console";
-import { basename } from "node:path";
 import {
   ready,
   to_base64,
   to_hex,
 } from "libsodium-wrappers-sumo";
+import * as console from "node:console";
+import path from "node:path";
 import { calcKeyFromPassword, decryptFile, encryptFile, generateNewSalt } from "./CryptoTool";
 
-function isEqual(arr1: Uint8Array, arr2: Uint8Array): boolean {
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
-
-  return arr1.every((value, index) => value === arr2[index]);
-}
-
-interface IEncryptModResult {
+interface IEncryptModuleResult {
   crypt: {
-    name: string;
     data: Uint8Array;
-  };
-  salt: {
     name: string;
-    data: Uint8Array;
   };
   nonce: {
-    name: string;
     data: Uint8Array;
+    name: string;
+  };
+  salt: {
+    data: Uint8Array;
+    name: string;
   };
 }
-export async function encryptModZipFile(f: Buffer, password: string, filename: string): Promise<IEncryptModResult> {
+
+export async function encryptModuleZipFile(f: Buffer, password: string, filename: string): Promise<IEncryptModuleResult> {
   await ready;
 
   const salt = await generateNewSalt();
@@ -41,27 +34,27 @@ export async function encryptModZipFile(f: Buffer, password: string, filename: s
   console.log("key", key.length);
   console.log("key_hex", to_hex(key));
   console.log("key_base64", to_base64(key));
-  const { nonce, ciphertext } = await encryptFile(f, key);
+  const { ciphertext, nonce } = await encryptFile(f, key);
 
   console.log("nonce", nonce.length);
   console.log("nonce_hex", to_hex(nonce));
   console.log("nonce_base64", to_base64(nonce));
   console.log("ciphertext", ciphertext.length);
 
-  const R: IEncryptModResult = {
+  const R: IEncryptModuleResult = {
     crypt: {
-      name: `${basename(filename)}.crypt`,
       data: ciphertext,
-    },
-    salt: {
-      name: `${basename(filename)}.salt`,
-      data: salt,
+      name: `${path.basename(filename)}.crypt`,
     },
     nonce: {
-      name: `${basename(filename)}.nonce`,
       data: nonce,
+      name: `${path.basename(filename)}.nonce`,
     },
-  } as IEncryptModResult;
+    salt: {
+      data: salt,
+      name: `${path.basename(filename)}.salt`,
+    },
+  } as IEncryptModuleResult;
 
   const decrypted = await decryptFile(
     R.crypt.data,
@@ -72,4 +65,7 @@ export async function encryptModZipFile(f: Buffer, password: string, filename: s
   console.log(isEqual(decrypted, f));
 
   return R;
+}
+function isEqual(array1: Uint8Array, array2: Uint8Array): boolean {
+  return array1.length === array2.length ? array1.every((value, index) => value === array2[index]) : false;
 }

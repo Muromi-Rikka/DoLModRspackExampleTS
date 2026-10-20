@@ -1,22 +1,24 @@
 import { renton } from "@renton/eslint-config";
 
 export default renton({
+  formatters: {
+    markdown: "prettier",
+  },
+  jsonc: true,
+  markdown: true,
   stylistic: {
     quotes: "double",
     semi: true,
   },
-  typescript: true,
-  jsonc: true,
-  yaml: true,
-  markdown: true,
   test: true,
-  formatters: {
-    markdown: "prettier",
-  },
+  typescript: true,
+  yaml: true,
 }, {
-  ignores: [".superpowers/**"],
+  ignores: [".superpowers/**", "utils/static/**"],
+}, {
   rules: {
     "pnpm/yaml-enforce-settings": "off",
     "unicorn/filename-case": "off",
+    "unicorn/name-replacements": "off",
   },
 });

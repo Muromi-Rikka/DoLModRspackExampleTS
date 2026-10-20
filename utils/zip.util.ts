@@ -1,18 +1,104 @@
-import type { IBoot } from "../src/types/boot.types.ts";
-import { Buffer } from "node:buffer";
-import { existsSync, readdirSync, statSync } from "node:fs";
-import { relative, resolve } from "node:path";
 import { walkSync } from "@nodelib/fs.walk";
 import AdmZip from "adm-zip";
+import { Buffer } from "node:buffer";
+import { existsSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
+import type { IBoot } from "../src/types/boot.types.ts";
 import { cryptoConfig } from "../config/crypto.ts";
 import { name, version } from "../package.json";
 import { addonPlugin } from "../src/addonPlugin";
 import { dependenceInfo } from "../src/dependenceInfo";
-import { encryptModZipFile } from "./encrypt.util.ts";
+import { encryptModuleZipFile } from "./encrypt.util.ts";
 
-function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
-  const srcFilePath = resolve(srcDir, filePath);
-  if (!existsSync(srcFilePath)) {
+export async function createZip(_cwd: string, filename: string) {
+  const scriptFileDir = new Set([
+    "scriptFileList",
+    "scriptFileList_earlyload",
+    "scriptFileList_inject_early",
+    "scriptFileList_preload",
+  ]);
+  const distDir = path.resolve(_cwd, "dist");
+  const srcDir = path.resolve(_cwd, "src");
+  const moduleZip = new AdmZip();
+  const fileList = Object.fromEntries(readdirSync(distDir)
+    .filter(item => scriptFileDir.has(item))
+    .map((key) => {
+      const scriptList = readdirSync(path.resolve(distDir, key)).filter(item => item.endsWith(".js")).map(_file => [key, _file].join("/"));
+      if (scriptList.length > 0) {
+        moduleZip.addLocalFolder(path.resolve(distDir, key), key);
+      }
+      return [
+        key,
+        scriptList,
+      ];
+    }));
+  const result: IBoot = {
+    name,
+    version,
+    ...fileList,
+    ...getSourceFileList("additionFile", srcDir, moduleZip),
+    ...getSourceFileList("styleFileList", srcDir, moduleZip),
+    ...getSourceFileList("tweeFileList", srcDir, moduleZip),
+    ...getSourceFileList("imgFileList", srcDir, moduleZip),
+    ...getSourceFileList("replacePatchList", srcDir, moduleZip),
+    ...getSourceFileList("additionBinaryFile", srcDir, moduleZip),
+    addonPlugin,
+    dependenceInfo,
+  } as IBoot;
+  result.imgFileList.push(...loadOriginImage(srcDir, moduleZip));
+  moduleZip.addFile("boot.json", Buffer.from(JSON.stringify(result, null, 2), "utf8"));
+  if (cryptoConfig.enabled) {
+    const cryptoZip = new AdmZip();
+    cryptoZip.addLocalFile(path.resolve(__dirname, "static/earlyload.js"));
+    cryptoZip.addLocalFile(path.resolve(__dirname, "static/SimpleCryptWrapper.js"));
+    cryptoZip.addFile(cryptoConfig.passwordHintFile, Buffer.from(cryptoConfig.passwordHint));
+    const encryptModuleData = await encryptModuleZipFile(moduleZip.toBuffer(), cryptoConfig.password, filename);
+    const cryptoBootFile = {
+      name,
+      version,
+      ...getSourceFileList("additionFile", srcDir, cryptoZip),
+      additionBinaryFile: [
+        encryptModuleData.crypt.name,
+        encryptModuleData.salt.name,
+        encryptModuleData.nonce.name,
+      ],
+      additionFile: [],
+      dependenceInfo: [
+        {
+          modName: "ModLoader",
+          version: "^2.5.1",
+        },
+        {
+          modName: "SweetAlert2Mod",
+          version: "^1.0.0",
+        },
+      ],
+      imgFileList: [],
+      replacePatchList: [],
+      scriptFileList: [],
+      scriptFileList_earlyload: [
+        "earlyload.js",
+      ],
+      scriptFileList_inject_early: [
+        "SimpleCryptWrapper.js",
+      ],
+      scriptFileList_preload: [],
+      styleFileList: [],
+      tweeFileList: [],
+    };
+    (cryptoBootFile as any).additionFile.push(cryptoConfig.passwordHintFile);
+    cryptoZip.addFile(encryptModuleData.crypt.name, Buffer.from(encryptModuleData.crypt.data));
+    cryptoZip.addFile(encryptModuleData.salt.name, Buffer.from(encryptModuleData.salt.data));
+    cryptoZip.addFile(encryptModuleData.nonce.name, Buffer.from(encryptModuleData.nonce.data));
+    cryptoZip.addFile("boot.json", Buffer.from(JSON.stringify(cryptoBootFile, null, 2), "utf8"));
+    return cryptoZip;
+  }
+  return moduleZip;
+}
+
+function getSourceFileList(filePath: string, srcDir: string, moduleZip: AdmZip) {
+  const sourceFilePath = path.resolve(srcDir, filePath);
+  if (!existsSync(sourceFilePath)) {
     return Object.fromEntries(
       [[
         filePath,
@@ -20,9 +106,9 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
       ]],
     );
   }
-  const srcScriptList = readdirSync(srcFilePath).filter(item => item !== ".gitkeep");
-  if (srcScriptList.length) {
-    modZip.addLocalFolder(srcFilePath, filePath, (filename) => {
+  const sourceScriptList = readdirSync(sourceFilePath).filter(item => item !== ".gitkeep");
+  if (sourceScriptList.length > 0) {
+    moduleZip.addLocalFolder(sourceFilePath, filePath, (filename) => {
       return !filename.endsWith(".gitkeep");
     });
   }
@@ -31,7 +117,7 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
     [
       filePath,
       walkSync(
-        srcFilePath,
+        sourceFilePath,
         {
           basePath: filePath,
           pathSegmentSeparator: "/",
@@ -43,24 +129,24 @@ function getSrcFileList(filePath: string, srcDir: string, modZip: AdmZip) {
   ]);
 }
 
-function loadOriginImage(srcDir: string, modZip: AdmZip) {
-  const originImagePath = resolve(srcDir, "originImage");
+function loadOriginImage(srcDir: string, moduleZip: AdmZip) {
+  const originImagePath = path.resolve(srcDir, "originImage");
   if (!existsSync(originImagePath)) {
     return [];
   }
   const originList = readdirSync(originImagePath)
     .filter(item => item !== ".gitkeep")
-    .map(item => resolve(originImagePath, item));
-  if (originList.length) {
-    originList.forEach((item) => {
+    .map(item => path.resolve(originImagePath, item));
+  if (originList.length > 0) {
+    for (const item of originList) {
       const itemStat = statSync(item);
       if (itemStat.isDirectory()) {
-        modZip.addLocalFolder(item, relative(originImagePath, item));
+        moduleZip.addLocalFolder(item, path.relative(originImagePath, item));
       }
       else if (itemStat.isFile()) {
-        modZip.addLocalFile(item);
+        moduleZip.addLocalFile(item);
       }
-    });
+    }
     return walkSync(
       originImagePath,
       {
@@ -72,90 +158,4 @@ function loadOriginImage(srcDir: string, modZip: AdmZip) {
       .map(item => item.path);
   }
   return [];
-}
-
-export async function createZip(_cwd: string, filename: string) {
-  const scriptFileDir = new Set([
-    "scriptFileList_earlyload",
-    "scriptFileList_inject_early",
-    "scriptFileList_preload",
-    "scriptFileList",
-  ]);
-  const distDir = resolve(_cwd, "dist");
-  const srcDir = resolve(_cwd, "src");
-  const modZip = new AdmZip();
-  const fileList = Object.fromEntries(readdirSync(distDir)
-    .filter(item => scriptFileDir.has(item))
-    .map((key) => {
-      const scriptList = readdirSync(resolve(distDir, key)).filter(item => item.endsWith(".js")).map(_file => [key, _file].join("/"));
-      if (scriptList.length) {
-        modZip.addLocalFolder(resolve(distDir, key), key);
-      }
-      return [
-        key,
-        scriptList,
-      ];
-    }));
-  const result: IBoot = {
-    name,
-    version,
-    ...fileList,
-    ...getSrcFileList("additionFile", srcDir, modZip),
-    ...getSrcFileList("styleFileList", srcDir, modZip),
-    ...getSrcFileList("tweeFileList", srcDir, modZip),
-    ...getSrcFileList("imgFileList", srcDir, modZip),
-    ...getSrcFileList("replacePatchList", srcDir, modZip),
-    ...getSrcFileList("additionBinaryFile", srcDir, modZip),
-    addonPlugin,
-    dependenceInfo,
-  } as IBoot;
-  result.imgFileList.push(...loadOriginImage(srcDir, modZip));
-  modZip.addFile("boot.json", Buffer.from(JSON.stringify(result, null, 2), "utf-8"));
-  if (cryptoConfig.enabled) {
-    const cryptoZip = new AdmZip();
-    cryptoZip.addLocalFile(resolve(__dirname, "static/earlyload.js"));
-    cryptoZip.addLocalFile(resolve(__dirname, "static/SimpleCryptWrapper.js"));
-    cryptoZip.addFile(cryptoConfig.passwordHintFile, Buffer.from(cryptoConfig.passwordHint));
-    const encryptModData = await encryptModZipFile(modZip.toBuffer(), cryptoConfig.password, filename);
-    const cryptoBootFile = {
-      name,
-      version,
-      ...getSrcFileList("additionFile", srcDir, cryptoZip),
-      additionFile: [],
-      styleFileList: [],
-      tweeFileList: [],
-      imgFileList: [],
-      replacePatchList: [],
-      scriptFileList_preload: [],
-      scriptFileList: [],
-      additionBinaryFile: [
-        encryptModData.crypt.name,
-        encryptModData.salt.name,
-        encryptModData.nonce.name,
-      ],
-      scriptFileList_earlyload: [
-        "earlyload.js",
-      ],
-      scriptFileList_inject_early: [
-        "SimpleCryptWrapper.js",
-      ],
-      dependenceInfo: [
-        {
-          modName: "ModLoader",
-          version: "^2.5.1",
-        },
-        {
-          modName: "SweetAlert2Mod",
-          version: "^1.0.0",
-        },
-      ],
-    };
-    (cryptoBootFile as any).additionFile.push(cryptoConfig.passwordHintFile);
-    cryptoZip.addFile(encryptModData.crypt.name, Buffer.from(encryptModData.crypt.data));
-    cryptoZip.addFile(encryptModData.salt.name, Buffer.from(encryptModData.salt.data));
-    cryptoZip.addFile(encryptModData.nonce.name, Buffer.from(encryptModData.nonce.data));
-    cryptoZip.addFile("boot.json", Buffer.from(JSON.stringify(cryptoBootFile, null, 2), "utf-8"));
-    return cryptoZip;
-  }
-  return modZip;
 }

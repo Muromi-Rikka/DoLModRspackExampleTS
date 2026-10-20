@@ -1,4 +1,8 @@
+minimumReleaseAgeExclude:
+  - '@renton/eslint-config@1.2.0'
+
 allowBuilds:
   esbuild: true
+
 onlyBuiltDependencies:
   - esbuild
