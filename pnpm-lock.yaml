@@ -53,7 +53,7 @@ importers:
         version: 24.19.2
       '@types/twine-sugarcube':
         specifier: ^2.37.1
-        version: 2.37.2
+        version: 2.37.3
       adm-zip:
         specifier: ^0.6.0
         version: 0.6.1
@@ -711,8 +711,8 @@ packages:
   '@types/node@24.19.2':
     resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
 
-  '@types/twine-sugarcube@2.37.2':
-    resolution: {integrity: sha512-ta3swJxlp3YUxo9hElYhar+MC5mG+TirKhmBr8+67nU5DfgqJK7SrIF05W54yaIRei9KNZDwAvgg/mu8PyTa4Q==}
+  '@types/twine-sugarcube@2.37.3':
+    resolution: {integrity: sha512-iyyQYkEQBrFrgKkQh28P3Yapk5IjBW7pvxsyJSVMQMvcQo0jpoRBy49itjBPxtB6ahvmU7Grm5l/53cX/qgyEg==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -2281,7 +2281,7 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
-  '@types/twine-sugarcube@2.37.2':
+  '@types/twine-sugarcube@2.37.3':
     dependencies:
       '@types/jquery': 4.0.1
 
