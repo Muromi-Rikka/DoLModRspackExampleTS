@@ -50,7 +50,7 @@ importers:
         version: 4.17.12
       '@types/node':
         specifier: ^26.0.0
-        version: 26.6.5
+        version: 26.6.6
       '@types/twine-sugarcube':
         specifier: ^2.37.1
         version: 2.37.3
@@ -708,8 +708,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@26.6.5':
-    resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
+  '@types/node@26.6.6':
+    resolution: {integrity: sha512-MzQj+8Kx3XI40OmUAE6Qoh58ZMNstNNMwn2nfd3qWsfe7nDNSqJNzes4njhz6AHwrSHOffSLwXU6yb474Q4aog==}
 
   '@types/twine-sugarcube@2.37.3':
     resolution: {integrity: sha512-iyyQYkEQBrFrgKkQh28P3Yapk5IjBW7pvxsyJSVMQMvcQo0jpoRBy49itjBPxtB6ahvmU7Grm5l/53cX/qgyEg==}
@@ -2277,7 +2277,7 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@26.6.5':
+  '@types/node@26.6.6':
     dependencies:
       undici-types: 8.9.0
 
