@@ -1,3 +1,4 @@
+minimumReleaseAge: 0
 minimumReleaseAgeExclude:
   - '@renton/eslint-config@1.2.0 || 1.2.1'
 
