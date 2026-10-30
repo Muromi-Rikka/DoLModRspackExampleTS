@@ -17,8 +17,7 @@ export default renton({
   ignores: [".superpowers/**", "utils/static/**"],
 }, {
   rules: {
-    "pnpm/yaml-enforce-settings": "off",
-    "unicorn/filename-case": "off",
-    "unicorn/name-replacements": "off",
+    "unicorn/filename-case": "off", // src/scriptFileList_preload 等目录名由 DoL 加载器约定固定
+    "unicorn/name-replacements": "off", // Dir→Direction、util→utility 属误报（rspack.config.ts / utils/zip.util.ts）
   },
 });

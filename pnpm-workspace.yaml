@@ -1,6 +1,11 @@
+
 minimumReleaseAge: 0
+minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - '@renton/eslint-config@1.2.0 || 1.2.1'
+  - '@renton/eslint-config@1.2.1'
+
+trustPolicy: no-downgrade
+shellEmulator: true
 
 allowBuilds:
   esbuild: true

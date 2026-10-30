@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development rspack serve",
     "build": "cross-env NODE_ENV=production rspack build",
-    "postbuild": "tsx ./utils/prebuild.ts"
+    "postbuild": "tsx ./utils/prebuild.ts",
+    "lint": "eslint . --max-warnings=0 --no-warn-ignored"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
