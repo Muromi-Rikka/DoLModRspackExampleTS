@@ -72,7 +72,9 @@ export async function decryptFile(data: Uint8Array, key: Uint8Array, nonce: Uint
   if (crypto_aead_chacha20poly1305_NPUBBYTES !== nonce.length) {
     throw new Error("nonce length error");
   }
-  return crypto_aead_chacha20poly1305_KEYBYTES === key.length ? crypto_aead_chacha20poly1305_decrypt(null, data, additionalData, nonce, key) : Promise.reject(new Error("key length error"));
+  return crypto_aead_chacha20poly1305_KEYBYTES === key.length
+    ? crypto_aead_chacha20poly1305_decrypt(null, data, additionalData, nonce, key)
+    : Promise.reject(new Error("key length error"));
 }
 
 export async function encryptFile(data: Uint8Array, key: Uint8Array, _additionalData: null | Uint8Array = null) {

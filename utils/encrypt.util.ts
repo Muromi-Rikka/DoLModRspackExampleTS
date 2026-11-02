@@ -67,5 +67,7 @@ export async function encryptModuleZipFile(f: Buffer, password: string, filename
   return R;
 }
 function isEqual(array1: Uint8Array, array2: Uint8Array): boolean {
-  return array1.length === array2.length ? array1.every((value, index) => value === array2[index]) : false;
+  return array1.length === array2.length
+    ? array1.every((value, index) => value === array2[index])
+    : false;
 }

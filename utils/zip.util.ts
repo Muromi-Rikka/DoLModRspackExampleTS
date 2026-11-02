@@ -100,10 +100,12 @@ function getSourceFileList(filePath: string, srcDir: string, moduleZip: AdmZip) 
   const sourceFilePath = path.resolve(srcDir, filePath);
   if (!existsSync(sourceFilePath)) {
     return Object.fromEntries(
-      [[
-        filePath,
-        [],
-      ]],
+      [
+        [
+          filePath,
+          [],
+        ],
+      ],
     );
   }
   const sourceScriptList = readdirSync(sourceFilePath).filter(item => item !== ".gitkeep");

@@ -71,7 +71,13 @@ export function ModuleWebpackExampleTs_patchLinkButton(
     /* eslint-disable unicorn/no-this-outside-of-class, unicorn/no-this-assignment, no-console */
     handler() {
       const thisPtr = this;
-      console.log("patchLinkButton handler", [thisPtr, thisPtr.name, thisPtr.args, thisPtr.args[0], thisPtr.output]);
+      console.log("patchLinkButton handler", [
+        thisPtr,
+        thisPtr.name,
+        thisPtr.args,
+        thisPtr.args[0],
+        thisPtr.output,
+      ]);
 
       // eslint-disable-next-line prefer-rest-params
       const r = h.apply(this as any, arguments);
@@ -87,7 +93,12 @@ export function ModuleWebpackExampleTs_patchLinkButton(
       if (isNeedHook) {
         const hookData = thisPtr.args[2] || thisPtr.args[1];
         if (!isLinkTypeData(hookData)) {
-          console.error("patchLinkButton() hookData invalid", [thisPtr, thisPtr.name, thisPtr.args, hookData]);
+          console.error("patchLinkButton() hookData invalid", [
+            thisPtr,
+            thisPtr.name,
+            thisPtr.args,
+            hookData,
+          ]);
           return r;
         }
 
@@ -106,19 +117,41 @@ export function ModuleWebpackExampleTs_patchLinkButton(
             for (const event of eventList) {
               const handler = event.handler;
               event.handler = function () {
-                console.log("patchLinkButton output jq events", [key, thisPtr, thisPtr.name, thisPtr.args, thisPtr.args[0], thisPtr.output]);
+                console.log("patchLinkButton output jq events", [
+                  key,
+                  thisPtr,
+                  thisPtr.name,
+                  thisPtr.args,
+                  thisPtr.args[0],
+                  thisPtr.output,
+                ]);
                 const testR = ScriptingReference.evalTwineScript(hookData.text.trim());
                 if (testR) {
                   // need filter
-                  console.log("patchLinkButton filter event", [key, thisPtr, thisPtr.name, thisPtr.args]);
+                  console.log("patchLinkButton filter event", [
+                    key,
+                    thisPtr,
+                    thisPtr.name,
+                    thisPtr.args,
+                  ]);
                   if (hookData.text.trim() !== hookData.link.trim()) {
-                    console.log("patchLinkButton run custom event", [key, thisPtr, thisPtr.name, thisPtr.args]);
+                    console.log("patchLinkButton run custom event", [
+                      key,
+                      thisPtr,
+                      thisPtr.name,
+                      thisPtr.args,
+                    ]);
                     ScriptingReference.evalTwineScript(hookData.link.trim());
                   }
                 }
                 else {
                   // allow
-                  console.log("patchLinkButton allow event", [key, thisPtr, thisPtr.name, thisPtr.args]);
+                  console.log("patchLinkButton allow event", [
+                    key,
+                    thisPtr,
+                    thisPtr.name,
+                    thisPtr.args,
+                  ]);
                   // eslint-disable-next-line prefer-rest-params
                   Reflect.apply(handler, this, arguments);
                 }

@@ -7,7 +7,12 @@ import { name, version } from "./package.json";
 import { createZip } from "./utils/zip.util.ts";
 
 // Target browsers, see: https://github.com/browserslist/browserslist
-const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
+const targets = [
+  "chrome >= 87",
+  "edge >= 88",
+  "firefox >= 78",
+  "safari >= 14",
+];
 const scriptFileDir = new Set([
   "scriptFileList",
   "scriptFileList_earlyload",
