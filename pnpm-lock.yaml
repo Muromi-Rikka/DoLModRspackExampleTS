@@ -13,7 +13,7 @@ importers:
         version: 1.11.23
       jquery:
         specifier: ^4.0.0
-        version: 4.0.0
+        version: 4.1.0
       libsodium-wrappers-sumo:
         specifier: ^0.8.0
         version: 0.8.4
@@ -1351,8 +1351,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jquery@4.0.0:
-    resolution: {integrity: sha512-TXCHVR3Lb6TZdtw1l3RTLf8RBWVGexdxL6AC8/e0xZKEpBflBsjh9/8LXw+dkNFuOyW9B7iB3O1sP7hS0Kiacg==}
+  jquery@4.1.0:
+    resolution: {integrity: sha512-tnN2N83S+xD3yhmdBP4nnJ1XOO0Fl586rG23FA5h/JAe8XN3W9a1zGwDMltBptn+UpcqEKicnO61+jQ0EiF2fw==}
 
   js-yaml@5.5.0:
     resolution: {integrity: sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==}
@@ -3086,7 +3086,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jquery@4.0.0: {}
+  jquery@4.1.0: {}
 
   js-yaml@5.5.0:
     dependencies:
