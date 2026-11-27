@@ -18,8 +18,8 @@
   "devDependencies": {
     "@nodelib/fs.walk": "^3.0.1",
     "@renton/eslint-config": "^2.0.0",
-    "@rspack/cli": "^2.3.3",
-    "@rspack/core": "^2.3.3",
+    "@rspack/cli": "^2.3.4",
+    "@rspack/core": "^2.3.4",
     "@rspack/dev-server": "^2.2.2",
     "@scml/types": "^1.0.7",
     "@types/adm-zip": "^0.6.0",
